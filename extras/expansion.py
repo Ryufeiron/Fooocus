@@ -115,8 +115,8 @@ class FooocusExpansion:
         if max_new_tokens == 0:
             return prompt[:-1]
 
-        # https://huggingface.co/blog/introducing-csearch
-        # https://huggingface.co/docs/transformers/generation_strategies
+        # https://hf-mirror.com/blog/introducing-csearch
+        # https://hf-mirror.com/docs/transformers/generation_strategies
         features = self.model.generate(**tokenized_kwargs,
                                        top_k=100,
                                        max_new_tokens=max_new_tokens,

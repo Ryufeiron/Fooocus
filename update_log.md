@@ -86,7 +86,7 @@ This version includes various package updates. If the auto-update doesn't work y
 * Add new style "Random Style"
 * Update default anime model to animaPencilXL_v310
 * Add button to reconnect the UI after Fooocus crashed without having to configure everything again (no page reload required)
-* Add performance "hyper-sd" (based on [Hyper-SDXL 4 step LoRA](https://huggingface.co/ByteDance/Hyper-SD/blob/main/Hyper-SDXL-4steps-lora.safetensors))
+* Add performance "hyper-sd" (based on [Hyper-SDXL 4 step LoRA](https://hf-mirror.com/ByteDance/Hyper-SD/blob/main/Hyper-SDXL-4steps-lora.safetensors))
 * Add [AlignYourSteps](https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/) scheduler by Nvidia, see 
 * Add [TCD](https://github.com/jabir-zheng/TCD) sampler and scheduler (based on sgm_uniform)
 * Add NSFW image censoring (disables intermediate image preview while generating). Set config value `default_black_out_nsfw` to True to always enable.
@@ -107,7 +107,7 @@ This version includes various package updates. If the auto-update doesn't work y
 
 # [2.3.0](https://github.com/lllyasviel/Fooocus/releases/tag/2.3.0)
 
-* Add performance "lightning" (based on [SDXL-Lightning 4 step LoRA](https://huggingface.co/ByteDance/SDXL-Lightning/blob/main/sdxl_lightning_4step_lora.safetensors))
+* Add performance "lightning" (based on [SDXL-Lightning 4 step LoRA](https://hf-mirror.com/ByteDance/SDXL-Lightning/blob/main/sdxl_lightning_4step_lora.safetensors))
 * Add preset selection to UI, disable with argument `--disable-preset-selection`. Use `--always-download-new-model` to download missing models on preset switch.
 * Improve face swap consistency by switching later in the process to (synthetic) refiner
 * Add temp path cleanup on startup

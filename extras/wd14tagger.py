@@ -1,12 +1,12 @@
-# https://huggingface.co/spaces/SmilingWolf/wd-v1-4-tags
+# https://hf-mirror.com/spaces/SmilingWolf/wd-v1-4-tags
 # https://github.com/pythongosssss/ComfyUI-WD14-Tagger/blob/main/wd14tagger.py
 
 # {
-#     "wd-v1-4-moat-tagger-v2": "https://huggingface.co/SmilingWolf/wd-v1-4-moat-tagger-v2",
-#     "wd-v1-4-convnextv2-tagger-v2": "https://huggingface.co/SmilingWolf/wd-v1-4-convnextv2-tagger-v2",
-#     "wd-v1-4-convnext-tagger-v2": "https://huggingface.co/SmilingWolf/wd-v1-4-convnext-tagger-v2",
-#     "wd-v1-4-convnext-tagger": "https://huggingface.co/SmilingWolf/wd-v1-4-convnext-tagger",
-#     "wd-v1-4-vit-tagger-v2": "https://huggingface.co/SmilingWolf/wd-v1-4-vit-tagger-v2"
+#     "wd-v1-4-moat-tagger-v2": "https://hf-mirror.com/SmilingWolf/wd-v1-4-moat-tagger-v2",
+#     "wd-v1-4-convnextv2-tagger-v2": "https://hf-mirror.com/SmilingWolf/wd-v1-4-convnextv2-tagger-v2",
+#     "wd-v1-4-convnext-tagger-v2": "https://hf-mirror.com/SmilingWolf/wd-v1-4-convnext-tagger-v2",
+#     "wd-v1-4-convnext-tagger": "https://hf-mirror.com/SmilingWolf/wd-v1-4-convnext-tagger",
+#     "wd-v1-4-vit-tagger-v2": "https://hf-mirror.com/SmilingWolf/wd-v1-4-vit-tagger-v2"
 # }
 
 
@@ -30,13 +30,13 @@ def default_interrogator(image_rgb, threshold=0.35, character_threshold=0.85, ex
     model_name = "wd-v1-4-moat-tagger-v2"
 
     model_onnx_filename = load_file_from_url(
-        url=f'https://huggingface.co/lllyasviel/misc/resolve/main/{model_name}.onnx',
+        url=f'https://hf-mirror.com/lllyasviel/misc/resolve/main/{model_name}.onnx',
         model_dir=path_clip_vision,
         file_name=f'{model_name}.onnx',
     )
 
     model_csv_filename = load_file_from_url(
-        url=f'https://huggingface.co/lllyasviel/misc/resolve/main/{model_name}.csv',
+        url=f'https://hf-mirror.com/lllyasviel/misc/resolve/main/{model_name}.csv',
         model_dir=path_clip_vision,
         file_name=f'{model_name}.csv',
     )

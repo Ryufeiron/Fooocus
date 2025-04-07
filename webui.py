@@ -168,17 +168,34 @@ with shared.gradio_root:
                                  elem_classes=['resizable_area', 'main_view', 'final_gallery', 'image_gallery'],
                                  elem_id='final_gallery')
             with gr.Row():
-                with gr.Column(scale=17):
-                    prompt = gr.Textbox(show_label=False, placeholder="Type prompt here or paste parameters.", elem_id='positive_prompt',
-                                        autofocus=True, lines=3)
+                with gr.Column(scale=17):  # Set the width ratio for the prompt input
+                    prompt = gr.Textbox(
+                        show_label=False,
+                        placeholder="Type prompt here or paste parameters.",
+                        elem_id='positive_prompt',
+                        autofocus=True,
+                        lines=3
+                    )
 
                     default_prompt = modules.config.default_prompt
                     if isinstance(default_prompt, str) and default_prompt != '':
                         shared.gradio_root.load(lambda: default_prompt, outputs=prompt)
 
-                with gr.Column(scale=3, min_width=0):
-                    generate_button = gr.Button(label="Generate", value="Generate", elem_classes='type_row', elem_id='generate_button', visible=True)
-                    reset_button = gr.Button(label="Reconnect", value="Reconnect", elem_classes='type_row', elem_id='reset_button', visible=False)
+                with gr.Column(scale=3, min_width=0):  # Set the width ratio for the Generate button
+                    generate_button = gr.Button(
+                        label="Generate",
+                        value="Generate",
+                        elem_classes='type_row',
+                        elem_id='generate_button',
+                        visible=True
+                    )
+                    reset_button = gr.Button(
+                        label="Reconnect",
+                        value="Reconnect",
+                        elem_classes='type_row',
+                        elem_id='reset_button',
+                        visible=False
+                    )
                     load_parameter_button = gr.Button(label="Load Parameters", value="Load Parameters", elem_classes='type_row', elem_id='load_parameter_button', visible=False)
                     skip_button = gr.Button(label="Skip", value="Skip", elem_classes='type_row_half', elem_id='skip_button', visible=False)
                     stop_button = gr.Button(label="Stop", value="Stop", elem_classes='type_row_half', elem_id='stop_button', visible=False)
