@@ -22,7 +22,7 @@ import modules.config as config
 import modules.flags as flags
 from modules.sdxl_styles import legal_style_names
 import modules.api_async_worker as async_worker
-from modules.api_request import GenerateRequest
+from modules.api_params import GenerateParams
 import args_manager
 
 # Ensure outputs directory exists
@@ -176,11 +176,11 @@ async def save_results(images):
     return image_urls
 
 @app.post("/api/create_task")
-async def create_task(req: GenerateRequest):
+async def create_task(reqParams: GenerateParams):
     """Create a new AsyncTask and set it as the current task."""
     try:
         os.makedirs("outputs", exist_ok=True)
-        task = async_worker.AsyncTask(req)
+        task = async_worker.AsyncTask(reqParams)
         app.state.current_task = task  # Save the task as the current task
         logger.info("Task created and set as the current task")
         return JSONResponse(content={"status": "ok"})

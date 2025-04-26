@@ -12,6 +12,8 @@ from typing import List, Tuple, AnyStr, NamedTuple
 import json
 import hashlib
 
+import base64
+from io import BytesIO
 from PIL import Image
 
 import modules.config
@@ -129,8 +131,32 @@ def set_image_shape_ceil(im, shape_ceil):
 
     return resample_image(im, width=W, height=H)
 
+# 将图片字符串类型转换为numpy数组
+def base64_to_numpy(base64_str):
+    # 1. 移除前缀（如果有）
+    if ',' in base64_str:
+        header, encoded = base64_str.split(',', 1)
+    else:
+        encoded = base64_str
+        
+    # 2. 解码Base64数据
+    image_data = base64.b64decode(encoded)
+
+    # 3. 使用BytesIO让数据像文件一样
+    image_bytes = BytesIO(image_data)
+
+    # 4. 打开为PIL图像
+    image = Image.open(image_bytes)
+
+    # 5. 转换为NumPy数组
+    np_array = np.array(image)  # 这是一个np.uint8数组
+
+    return np_array
 
 def HWC3(x):
+    if isinstance(x, str):
+        x = base64_to_numpy(x)
+
     assert x.dtype == np.uint8
     if x.ndim == 2:
         x = x[:, :, None]

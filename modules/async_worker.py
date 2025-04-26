@@ -68,6 +68,7 @@ class AsyncTask:
         self.sampler_name = args.pop()
         self.scheduler_name = args.pop()
         self.vae_name = args.pop()
+        # Overwrite 参数
         self.overwrite_step = args.pop()
         self.overwrite_switch = args.pop()
         self.overwrite_width = args.pop()

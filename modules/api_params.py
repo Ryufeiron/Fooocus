@@ -5,8 +5,8 @@ from modules.flags import (
 )
 
 
-# Request Models
-class GenerateRequest(BaseModel):
+# Generate Params Models
+class GenerateParams(BaseModel):
     prompt: str
     negative_prompt: str = ""
     style_selections: List[str] = []  # 修改为匹配AsyncTask的字段名
@@ -20,8 +20,10 @@ class GenerateRequest(BaseModel):
     refiner_model_name: str = "None"
     refiner_switch: float = 0.5
     loras: List[Dict] = []
-    input_image: Optional[str] = None
+    input_image_checkbox: bool = False
+    current_tab: str = "text2image"
     uov_method: Optional[str] = None
+    uov_input_image: Optional[str] = None
 
     # Advanced Parameters
     clip_skip: int = 1
@@ -54,6 +56,7 @@ class GenerateRequest(BaseModel):
     inpaint_engine: str = "v1"
     inpaint_strength: float = 1.0
     inpaint_respective_field: float = 1.0
+    inpaint_input_image: Optional[str] = None
     
     # Enhancement Parameters
     enhance_prompt: str = ""

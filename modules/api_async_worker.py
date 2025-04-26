@@ -1,16 +1,15 @@
 import threading
-import uuid  # Import for generating unique task IDs
 
 from extras.inpaint_mask import generate_mask_from_image, SAMOptions
 from modules.patch import PatchSettings, patch_settings, patch_all
-from modules.api_request import GenerateRequest
+from modules.api_params import GenerateParams
 import modules.config
 
 patch_all()
 
 
 class AsyncTask:
-    def __init__(self, request: GenerateRequest):
+    def __init__(self, request: GenerateParams):
         from modules.flags import Performance, MetadataScheme, ip_list, disabled
         from modules.util import get_enabled_loras
         from modules.config import default_max_lora_number
@@ -53,12 +52,12 @@ class AsyncTask:
             self.loras = []
 
         # 图像处理参数
-        self.current_tab = 'txt2img'
-        self.input_image_checkbox = False
-        self.uov_method = disabled.casefold()
-        self.uov_input_image = None
+        self.current_tab = request.current_tab if hasattr(request, 'current_tab') else "text2image"
+        self.input_image_checkbox = request.input_image_checkbox if hasattr(request, 'input_image_checkbox') else False
+        self.uov_method = request.uov_method if hasattr(request, 'uov_method') else None
+        self.uov_input_image = request.uov_input_image if hasattr(request, 'uov_input_image') else None
         self.outpaint_selections = []
-        self.inpaint_input_image = None
+        self.inpaint_input_image = request.inpaint_input_image if hasattr(request, 'inpaint_input_image') else None
         self.inpaint_additional_prompt = ''
         self.inpaint_mask_image_upload = None
 
@@ -120,6 +119,8 @@ class AsyncTask:
 
         # ControlNet 任务
         self.cn_tasks = {x: [] for x in ip_list}
+        self.mixing_image_prompt_and_inpaint = True
+        self.mixing_image_prompt_and_vary_upscale = True
 
         # 元数据和持久化
         self.save_final_enhanced_image_only = True
@@ -130,9 +131,6 @@ class AsyncTask:
         self.should_enhance = False
         self.images_to_enhance_count = 0
         self.enhance_stats = {}
-
-        # Unique task ID
-        self.task_id = str(uuid.uuid4())  # Generate a unique task ID
 
 async_tasks = []
 
